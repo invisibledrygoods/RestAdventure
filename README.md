@@ -4,12 +4,12 @@ REST adventure
 API
 ---
 
-| action       | curl                                                                  |
-|--------------|-----------------------------------------------------------------------|
-| new player   | curl localhost:4567/load/player-name/starting-room                    |
-| load player  | curl localhost:4567/load/player-name/starting-room/initial,inventory  |
-| save player  | curl localhost:4567/save/player-name                                  |
-| send command | curl localhost:4567/run/player-name/smash-pumpkin                     |
+| action         | curl                                                                  |
+|----------------|-----------------------------------------------------------------------|
+| new player     | curl localhost:4567/load/player-name/starting-room                    |
+| load player    | curl localhost:4567/load/player-name/starting-room/initial,inventory  |
+| save player    | curl localhost:4567/save/player-name                                  |
+| send command   | curl localhost:4567/run/player-name/smash-pumpkin                     |
 | next page of multiplage command | curl localhost:4567/next/player-name               |
 
 Editing Interface
@@ -30,7 +30,7 @@ The scripting language is ruby with a few pre-defined methods
 | travel_to(room_name) | travel to another room                       |
 | first                | multi-page block, see example below          |
 
-### first
+### Multi-Page Blocks
 
 `first` begins a multi-page block with subsequent pages delimited by `then` and ending with `the_end`
 
@@ -44,17 +44,17 @@ The scripting language is ruby with a few pre-defined methods
       reply "my house is on fire, gtg"
     }.the_end
 
-This produces the output
+This produces the output...
 
     This is the story all about how
     -- next --
 
-and when /next/player-name is retreived
+and when /next/player-name is retreived...
 
     My life got flipped turned upside down
     -- next --
 
-and the last line will be capped with -- done -- instead of -- next --
+The last block is capped with `-- done --` instead of `-- next --`
 
     my house is on fire, gtg
     -- done --
