@@ -1,6 +1,28 @@
 REST adventure
 ==============
 
+Hi, its a RESTful adventure you can go on.
+
+Basically this is for game engines to interface with locally (unless you wanna
+make a game that people play via `curl`, that's cool too).
+
+Set Up
+------
+
+Its a sinatra server so you can just run it with `ruby rest-adventure.rb`.
+
+I wrote a really rudamentary flat-file database for it so that you wouldn't
+have to mess around with building native extensions for database adapters, but
+it's kind of crap so if things get laggy let me know and I'll figure out how to
+optimize it a little.
+
+To use it just prop up the server on the same machine as the game client, then
+connect to it through your native language's REST client and local loopback.
+Any time the player interacts with something adventure game-ish, like a Broken
+Elevator, or a Toilet Bowl Scrubber, send related verbs like fix-elevator or
+get-scrubber to the story server and use its responses to inform your animation
+and GUI state changes.
+
 API
 ---
 
