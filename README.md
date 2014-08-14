@@ -39,6 +39,9 @@ Editing Interface
 
 There is a web interface for editing located at http://localhost:4567/edit/rooms
 
+Room and verb scripts are edited through here and all changes are live. You
+shouldn't have to modify the source code at all.
+
 Scripting Language
 ------------------
 
