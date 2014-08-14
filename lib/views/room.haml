@@ -1,0 +1,23 @@
+%h1
+  %a{ :href => "/edit/rooms" } rooms
+  >
+  = room.name
+
+%h2 Script
+  
+%form{ :method => 'post' }
+  %textarea.mid.form-control{ :name => 'room_script' }= room.script
+  %button.btn.btn-default{ :type => 'submit', :value => 'Save' } Save
+  
+%h2 Verbs
+
+%ul
+  - verbs.each do |verb|
+    %li
+      %a{ :href => "#{room.name}/verbs/#{verb}" }= verb
+
+%form{ :action => "#{room.name}/verbs/new", :method => 'post' }
+  .input-group
+    %input.form-control{ :type => 'text', :name => 'verb_name', :placeholder => 'verb-name' }
+    %span.input-group-btn
+      %button.btn.btn-default{ :type => 'submit', :value => 'New Verb' } New Verb

@@ -1,0 +1,14 @@
+%h1
+  %a{ :href => "/edit/rooms" } rooms
+  >
+  %a{ :href => "/edit/rooms/#{room}" }= room
+  >
+  %a{ :href => "/edit/rooms/#{room}/verbs/#{verb.name}" }= verb.name
+  >
+  = verb.item_name
+
+%h2 Script
+
+%form{ :method => 'post' }
+  %textarea.tall.form-control{ :name => 'verb_script' }= verb.script
+  %button.btn.btn-default{ :type => 'submit', :value => 'Save' } Save

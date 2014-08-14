@@ -1,0 +1,18 @@
+%h1
+  %a{ :href => "/edit/rooms" } rooms
+  >
+  %a{ :href => "/edit/rooms/#{room}" }= room
+  >
+  = verb
+
+%h2 Items
+%ul
+  - items.each do |item|
+    %li
+      %a{ :href => "#{verb}/items/#{item.item_name}" }= item.item_name
+
+%form{ :action => "#{verb}/items/new", :method => 'post' }
+  .input-group
+    %input.form-control{ :type => 'text', :name => 'item_name', :placeholder => 'item-name' }
+    %span.input-group-btn
+      %button.btn.btn-default{ :type => 'submit', :value => 'New Item' } New Item

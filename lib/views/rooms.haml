@@ -1,0 +1,12 @@
+%h1 rooms
+
+%ul
+  - rooms.each do |room|
+    %li
+      %a{ :href => "rooms/#{room.name}" }= room.name
+
+%form{ :action => "rooms/new", :method => "post" }
+  .input-group
+    %input.form-control{ :type => "text", :name => "room_name", :placeholder => "room-name" }
+    %span.input-group-btn
+      %button.btn.btn-default{ :type => "submit", :value => "Add Room" } Add Room
