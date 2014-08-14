@@ -44,6 +44,13 @@ get '/next/:player' do |player_name|
   return context.result.join "\r\n"
 end
 
+get '/load/:player/:room' do |player, room|
+  Players.delete_where { name == player }
+  Players.append name: player, room_name: room
+
+  "you find yourself standing naked in #{room}"
+end
+
 get '/load/:player/:room/:inventory' do |player, room, inventory|
   Players.delete_where { name == player }
   Players.append name: player, room_name: room

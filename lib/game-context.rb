@@ -13,12 +13,12 @@ class GameContext
     give_item item_name if Items.where { name == item_name && player_id == @player }.empty?
   end
 
-  def remove_item(item_name)
+  def take_item(item_name)
     Items.delete_where { player_id == @player && name == item_name }
     reply "you lost #{item_name}"
   end
 
-  def move_to(room_id)
+  def travel_to(room_id)
     Players.update(room_id: room_id).where { id == @player.id }
     room = Rooms.where { id == room_id }.first
     reply "you are now in [#{room_id}]#{room.name}"
