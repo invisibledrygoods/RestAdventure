@@ -55,7 +55,7 @@ The scripting language is ruby with a few pre-defined methods
 | travel_to(room_name) | travel to another room                       |
 | first                | multi-page response, see example below       |
 
-### Multi-Page Blocks
+### Multi-Page Responses
 
 `first` begins a multi-page response with subsequent pages delimited by `then` and ending with `the_end`
 
