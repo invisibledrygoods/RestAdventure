@@ -2,7 +2,6 @@ require './lib/db-config'
 require './lib/game-context'
 require './lib/admin'
 require 'sinatra'
-require 'continuation'
 
 $contexts = {}
 
