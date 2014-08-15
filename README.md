@@ -94,3 +94,5 @@ In Progress
  - I'm worn out, I didn't test room entry scripts, but I at least know that
    they don't run on game load when they should, I'm not sure if they run after
    `travel_to` or not.
+ - Database scrubbing really needs to be implemented. It fills up with trash
+   sooooo fast.
