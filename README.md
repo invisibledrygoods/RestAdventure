@@ -42,6 +42,12 @@ There is a web interface for editing located at http://localhost:4567/edit/rooms
 Room and verb scripts are edited through here and all changes are live. You
 shouldn't have to modify the source code at all.
 
+'Any' Verbs
+-----------
+
+Verbs that act on the 'any' item, or operate in the 'any' room aren't bound to
+an item or a specific location but will be overridden by more specific verbs.
+
 Scripting Language
 ------------------
 
@@ -87,10 +93,6 @@ The last page is capped with `-- done --` instead of `-- next --`
 In Progress
 -----------
 
- - Verbs acting on the item 'any' should be executed if no other item matches.
- - Verbs acting on the room 'any' should be executed if no other room matches.
- - Verbs acting on the item 'any' and the room 'any' are seriously nuts, you
-   should be able to use them anywhere. Wow.
  - I'm worn out, I didn't test room entry scripts, but I at least know that
    they don't run on game load when they should, I'm not sure if they run after
    `travel_to` or not.
