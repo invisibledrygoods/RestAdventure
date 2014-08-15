@@ -12,21 +12,19 @@ enable :run
 get '/run/:player/:verb' do |player_name, verb_name|
   player = Players.where { name == player_name }.first
   inventory = Items.where { player_name == player.name }
-  verbs = Verbs.where { room_name == player.room_name && name == verb_name }
-  verb = verbs.find { |v| inventory.find { |i| i.name == v.item_name } }
-  verb ||= verbs.find { |v| v.name == "none" }
+  verbs = Verbs.where { name == verb_name && (room_name == 'any' || room_name == player.room_name) }
+
+  # sort into [specific item/specific room, any item/specific room, specific item/any room, any item/any room]
+  verbs.sort_by! { |v| (v.room_name == 'any' ? 2 : 0) + (v.item_name == 'any' ? 1 : 0) }
+
+  # then find the first (aka most specific) verb to run
+  verb = verbs.find { |v| v.item_name == 'any' || inventory.find { |i| i.name == v.item_name } }
 
   return 404 unless verb
 
-  context = GameContext.new(player)
-
-  $contexts[player_name] = context
-  context.script = verb.script
-  context.instance_eval context.script
-  puts "context finished: #{context.finished}"
-  $contexts[player_name] = nil if context.finished
-
-  puts "context saved as #{$contexts[player_name]}"
+  context = GameContext.new player, verb.script
+  context.run_script
+  $contexts[player_name] = context.finished ? nil : context
 
   return context.result.join "\r\n"
 end
@@ -38,7 +36,7 @@ get '/next/:player' do |player_name|
 
   context.result = nil
   context.iteration += 1
-  context.instance_eval context.script
+  context.run_script
   $contexts[player_name] = nil if context.finished
 
   return context.result.join "\r\n"
@@ -55,10 +53,7 @@ get '/load/:player/:room/:inventory' do |player, room, inventory|
   Players.delete_where { name == player }
   Players.append name: player, room_name: room
 
-  Items.delete_where { 
-    puts "#{player_name} == #{player}"
-    player_name == player 
-  }
+  Items.delete_where { player_name == player }
 
   inventory.split(',').each do |item|
     Items.append name: item, player_name: player

@@ -3,10 +3,15 @@ require_relative 'db-config.rb'
 class GameContext
   attr_accessor :player, :result, :iteration, :finished, :script
 
-  def initialize(player)
+  def initialize(player, script)
     @finished = true
     @iteration = 0
     @player = player
+    @script = script
+  end
+
+  def run_script
+    instance_eval @script
   end
 
   def give_item(item_name)
@@ -39,13 +44,8 @@ class GameContext
     def initialize(parent, run_in, &block)
       @parent = parent
       @run_in = run_in
-      if run_in == 0
-        block.call
-      end
-
-      if run_in == -1
-        parent.reply "-- next --"
-      end
+      block.call if run_in == 0
+      parent.reply "-- next --" if run_in == -1
     end
 
     def then(&block)
