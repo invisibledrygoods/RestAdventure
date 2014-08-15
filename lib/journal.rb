@@ -65,6 +65,7 @@ class Journal
   end
 
   def sanitize(unsafe)
+    unsafe = unsafe.dup
     unsafe.gsub! '&', '&amp;'
     unsafe.gsub! '#', '&hash;'
     unsafe.gsub! ',', '&comma;'
@@ -74,6 +75,7 @@ class Journal
   end
 
   def unsanitize(safe)
+    safe = safe.dup
     safe.gsub! '&comma;', ','
     safe.gsub! '&hash;', '#'
     safe.gsub! '&cr;', "\r"
