@@ -31,7 +31,11 @@ class Admin < Sinatra::Base
   end
 
   post '/edit/rooms/:room/verbs/new' do |room|
-    Verbs.append name: params[:verb_name], room_name: room, item_name: 'any'
+    Verbs.append(name: params[:verb_name],
+                 room_name: room,
+                 item_name: 'any',
+                 script: "reply 'you #{params[:verb_name]}'")
+
     redirect to "/edit/rooms/#{room}/verbs/#{params[:verb_name]}"
   end
 
