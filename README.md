@@ -83,3 +83,14 @@ The last page is capped with `-- done --` instead of `-- next --`
 
     my house is on fire, gtg
     -- done --
+
+In Progress
+-----------
+
+ - Verbs acting on the item 'any' should be executed if no other item matches.
+ - Verbs acting on the room 'any' should be executed if no other room matches.
+ - Verbs acting on the item 'any' and the room 'any' are seriously nuts, you
+   should be able to use them anywhere. Wow.
+ - I'm worn out, I didn't test room entry scripts, but I at least know that
+   they don't run on game load when they should, I'm not sure if they run after
+   `travel_to` or not.
