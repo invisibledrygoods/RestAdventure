@@ -32,7 +32,7 @@ API
 | load player    | curl localhost:4567/load/player-name/starting-room/initial,inventory  |
 | save player    | curl localhost:4567/save/player-name                                  |
 | send command   | curl localhost:4567/run/player-name/smash-pumpkin                     |
-| next page of multiplage command | curl localhost:4567/next/player-name               |
+| next page of multi-page command | curl localhost:4567/next/player-name               |
 
 Editing Interface
 -----------------
